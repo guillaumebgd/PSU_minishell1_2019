@@ -9,6 +9,7 @@ SRC	=	src/minishell.c				\
 		src/input/compute_cmd.c		\
 		src/input/prompt.c			\
 		src/env/find_path_cmd.c		\
+		src/env/is_in_dir.c
 
 MAIN	=	main.c
 

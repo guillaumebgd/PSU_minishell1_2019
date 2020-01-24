@@ -7,5 +7,4 @@
 
 void my_exit(void)
 {
-
 }

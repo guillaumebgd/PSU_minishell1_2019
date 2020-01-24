@@ -23,7 +23,7 @@ static char *get_path_in_env(char **env)
     return (NULL);
 }
 
-static char *get_correct_pwd(const char *env_path, const char *binary_name)
+char *get_correct_pwd(const char *env_path, const char *binary_name)
 {
     char *env_path_slash = NULL;
     char *path_dir = NULL;
@@ -77,7 +77,12 @@ static char *check_each_path_var(char *path_var, const char *binary_name)
             return (right_path);
         index += 1;
     }
-    return (NULL);
+    if (!right_path) {
+        if (!find_char_in_str(binary_name, '/'))
+            return (NULL);
+        is_in_curdir(&right_path, binary_name);
+    }
+    return (right_path);
 }
 
 char *find_path_cmd(char **env, const char *binary_name)

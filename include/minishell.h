@@ -25,6 +25,10 @@ char *find_path_cmd(char **env, const char *binary_name);
 
 //computes the command found in path
 int compute_cmd(char **parsed_input, char **env);
+//
+char *get_correct_pwd(const char *env_path, const char *binary_name);
+//
+void is_in_curdir(char **right_path, const char *bin);
 
 // Built-in's
 //exits from the mysh program

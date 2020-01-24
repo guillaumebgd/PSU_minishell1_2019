@@ -10,6 +10,8 @@ SRC	=	./get_next_line.c			\
 		./my_strlen.c				\
 		./my_strnlen.c				\
 		./my_strlen_char.c			\
+		./my_arrlen.c				\
+		./my_free_arr.c				\
 		./my_getnbr.c				\
 		./my_put_nbr.c				\
 		./my_putstr.c				\
@@ -19,7 +21,8 @@ SRC	=	./get_next_line.c			\
 		./my_strndup.c				\
 		./my_strdup_char.c			\
 		./my_strcat.c				\
-		./my_str_to_word_array.c
+		./my_str_to_word_array.c	\
+		./find_char_in_str.c
 
 CFLAGS	=	-Wall -Wextra
 
