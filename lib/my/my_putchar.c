@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** library
 ** File description:
-** my_putchar.c
+** puts a character onto the stdout
 */
 
 #include <unistd.h>

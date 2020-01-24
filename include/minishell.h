@@ -1,14 +1,33 @@
 /*
-** EPITECH PROJECT, 2019
-** PSU_minishell1_2019
+** EPITECH PROJECT, 2020
+** PSU_minishell1_2020
 ** File description:
-** minishell.h
+** header for the minishell1 project
 */
 
 #ifndef MINISHELL_H_
 
 #define MINISHELL_H_
 
-void minishell(char **);
+typedef enum bool_e {
+    FALSE,
+    TRUE
+} bool_t;
+
+//oversees the program proccess
+void minishell(char **env);
+
+//prints the prompt and get the input given by the user
+char *print_prompt_get_input(void);
+
+//checks if the given command can be found in folders listed in path
+bool_t check_cmd_in_path(const char * const *env, const char *to_find);
+
+//computes the command found in path
+int compute_cmd(char **parsed_input, char **env);
+
+// Built-in's
+//exits from the mysh program
+void my_exit(void);
 
 #endif /* MINISHELL_H_ */

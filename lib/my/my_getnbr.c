@@ -5,30 +5,36 @@
 ** returns nb from a str
 */
 
-static int get_sign(char const *str, int *i)
+#include "my.h"
+
+static int get_sign(const char *str, int *index)
 {
     int neg = 1;
 
-    while (str[(*i)] == '+' || str[(*i)] == '-') {
-        if (str[(*i)] == '-')
+    while (str[(*index)] && (str[(*index)] == '+' || str[(*index)] == '-')) {
+        if (str[(*index)] == '-')
             neg *= -1;
-        (*i) += 1;
+        (*index) += 1;
     }
     return (neg);
 }
 
-int my_getnbr(char const *str)
+int my_getnbr(const char *str)
 {
-    int nb = 0;
-    int i = 0;
+    int index = 0;
     int neg = 1;
+    int nb = 0;
 
-    neg = get_sign(str, &i);
-    while (str[i] != '\0' && (str[i] >= '0' && str[i] <= '9')) {
-        if (i > 0)
+    if (!str)
+        return (0);
+    neg = get_sign(str, &index);
+    if (my_strcmp(&str[index], "2147483647") > 0)
+        return (0);
+    while (str[index] && str[index] >= '0' && str[index] <= '9') {
+        if (index > 0)
             nb *= 10;
-        nb += str[i] - 48;
-        i += 1;
+        nb += str[index] - 48;
+        index += 1;
     }
     return (nb * neg);
 }

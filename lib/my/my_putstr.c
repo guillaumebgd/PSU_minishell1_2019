@@ -5,8 +5,8 @@
 ** put chars from a string
 */
 
-#include "my.h"
 #include <unistd.h>
+#include "my.h"
 
 int my_putstr(char const *str)
 {
@@ -14,7 +14,7 @@ int my_putstr(char const *str)
 
     if (size == -1)
         return (84);
-    if (write(1, str, size) < 0)
+    if (write(1, str, size) != size)
         return (84);
     return (0);
 }

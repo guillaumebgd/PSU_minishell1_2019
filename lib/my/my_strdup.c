@@ -2,27 +2,27 @@
 ** EPITECH PROJECT, 2019
 ** library
 ** File description:
-** my_strdup.c
+** duplicates a string with allocation
 */
 
-#include "my.h"
 #include <stdlib.h>
+#include "my.h"
 
-char *my_strdup(char const *template)
+char *my_strdup(const char *template)
 {
-    int len_template = my_strlen(template);
     char *dup = NULL;
-    int i = 0;
+    int len_template = my_strlen(template);
+    int count_dup = 0;
 
     if (len_template == -1)
         return (NULL);
-    dup = malloc(sizeof(char) * len_template + 1);
-    if (dup == NULL)
+    dup = malloc(sizeof(char) * (len_template + 1));
+    if (!dup)
         return (NULL);
-    while (template[i]) {
-        dup[i] = template[i];
-        i += 1;
+    while (template[count_dup]) {
+        dup[count_dup] = template[count_dup];
+        count_dup += 1;
     }
-    dup[i] = '\0';
+    dup[count_dup] = '\0';
     return (dup);
 }

@@ -7,7 +7,6 @@
 
 #include <stdlib.h>
 #include <unistd.h>
-#include <fcntl.h>
 
 static char *my_strdup(char *template, const char end)
 {
@@ -51,7 +50,7 @@ static char *my_strcat(char *first, char *second)
     return (result);
 }
 
-static char *get_line(const int fd, char **res, int *i, int nb_bytes)
+static char *get_line(const int fd, char **res, int *i, const int nb_bytes)
 {
     static char *tmp = NULL;
     static int size = 0;
@@ -80,7 +79,7 @@ static int check_stock_saved_line(char **res, char **line,
 {
     int index = 0;
 
-    if (!(*stock))
+    if (!(*stock) || (*stock)[0] == '\0')
         return (0);
     (*res) = my_strdup((*stock), '\0');
     while ((*stock)[index] && (*stock)[index] != '\n')
@@ -94,7 +93,7 @@ static int check_stock_saved_line(char **res, char **line,
     return (0);
 }
 
-char *get_next_line(const int fd, int nb_bytes)
+char *get_next_line(const int fd, const int nb_bytes)
 {
     static char *stock = NULL;
     char *line = NULL;

@@ -1,11 +1,13 @@
 ##
-## EPITECH PROJECT, 2019
-## Makefile my_ls
+## EPITECH PROJECT, 2020
+## Makefile minishell_1
 ## File description:
-## compiles c files with libs into my_ls program
+## compiles c files with libs into the minishell1 program
 ##
 
-SRC	=	src/minishell.c		\
+SRC	=	src/minishell.c				\
+		src/input/compute_cmd.c		\
+		src/input/prompt.c
 
 MAIN	=	main.c
 

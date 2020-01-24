@@ -1,46 +1,39 @@
 /*
-** EPITECH PROJECT, 2019
-** PSU_minishell1_2019
+** EPITECH PROJECT, 2020
+** PSU_minishell1_2020
 ** File description:
-** minishell.c
+** main track of what is happening the in process
 */
 
+#include <stddef.h>
+#include "minishell.h"
 #include "my.h"
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <unistd.h>
-#include <stdlib.h>
 
-static char *print_prompt_get_input(void)
+static bool_t special_input(const char *input, char **env)
 {
-    my_putstr("$> ");
-    return (get_next_line(0, 4096));
-}
+    int len_input = my_strlen(input);
 
-static int compute_cmd(char **parsed_input, char **env)
-{
-    char *pathway = NULL;
-    int wstatus;
-    pid_t pid;
-
-    pathway = my_strcat("/bin/", parsed_input[0]);
-    pid = fork();
-    if (pid == 0) {
-        execve(pathway, parsed_input, env);
-        return (0);
+    if (len_input <= 0) {
+        if (len_input == 0)
+            minishell(env);
+        if (len_input < 0)
+            my_putstr("exit\n");
+        return (FALSE);
     }
-    waitpid(pid, &wstatus, 0);
-    return (1);
+    return (TRUE);
 }
 
 void minishell(char **env)
 {
     static char **parsed_input = NULL;
+    static char *input = NULL;
 
-    parsed_input = my_str_to_word_array(print_prompt_get_input());
-    if (!parsed_input)
+    input = print_prompt_get_input();
+    if (!special_input(input, env))
         return;
-    if (compute_cmd(parsed_input, env) == 0)
+    parsed_input = my_str_to_word_array(input);
+    //compute_built_in(parsed_input);
+    if (!compute_cmd(parsed_input, env))
         return;
     minishell(env);
 }

@@ -1,25 +1,29 @@
 ##
 ## EPITECH PROJECT, 2019
-## Makefile lib
+## Makefile libmy
 ## File description:
-## makefile for lib
+## proccess compilation for this lib
 ##
 
-SRC	=	./my_getnbr.c				\
+SRC	=	./get_next_line.c			\
 		./my_putchar.c				\
+		./my_strlen.c				\
+		./my_strnlen.c				\
+		./my_strlen_char.c			\
+		./my_getnbr.c				\
 		./my_put_nbr.c				\
 		./my_putstr.c				\
-		./my_strlen.c				\
 		./my_strcmp.c				\
 		./my_strncmp.c				\
 		./my_strdup.c				\
-		./my_strcat.c				\
-		./get_next_line.c			\
-		./my_strlen_char.c			\
+		./my_strndup.c				\
 		./my_strdup_char.c			\
-		./my_str_to_word_array.c	\
+		./my_strcat.c				\
+		./my_str_to_word_array.c
 
-CFLAGS	=	-Wall -Wextra -I./../../include/
+CFLAGS	=	-Wall -Wextra
+
+CPPFLAGS	=	-I./../../include/
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -38,4 +42,5 @@ fclean:	clean
 
 re:	fclean all
 
+.NOTPARALLEL:
 .PHONY: all clean fclean re
