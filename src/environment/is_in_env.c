@@ -68,9 +68,9 @@ static void parse_and_check_path(const char *path_var,
                                 bool_t *found)
 {
     int count_paths = get_count_paths(path_var);
-    int path_len = 0;
-    int pathway_len = 0;
     int count_calls = 0;
+    int pathway_len = 0;
+    int path_len = 0;
 
     if (path_len <= 0)
         return;
