@@ -31,7 +31,8 @@ void minishell(char **env)
     input = print_prompt_get_input();
     if (!special_input(input, env))
         return;
-    parsed_input = my_str_to_word_array(input);
+    parsed_input = my_str_to_word_array(input, ' ', 1);
+    //compute_built_in(parsed_input);
     if (!compute_cmd(parsed_input, env))
         return;
     minishell(env);

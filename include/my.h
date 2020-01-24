@@ -45,6 +45,7 @@ int my_strncmp(const char *first, char const *second, const unsigned int n);
 char *my_strcat(const char *core, const char *to_append);
 
 //returns NULL if there's an issue.
-char **my_str_to_word_array(char *sentence);
+char **my_str_to_word_array(char *sentence, const char splitter,
+                                const int freer);
 
 #endif /* MY_H_ */

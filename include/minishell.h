@@ -21,7 +21,7 @@ void minishell(char **env);
 char *print_prompt_get_input(void);
 
 //checks if the given command can be found in folders listed in path
-bool_t check_cmd_in_path(const char * const *env, const char *to_find);
+char *find_path_cmd(char **env, const char *binary_name);
 
 //computes the command found in path
 int compute_cmd(char **parsed_input, char **env);

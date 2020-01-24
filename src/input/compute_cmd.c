@@ -9,20 +9,26 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "my.h"
+#include "minishell.h"
 
 int compute_cmd(char **parsed_input, char **env)
 {
-    char *pathway = NULL;
+    char *src = NULL;
     int wstatus = 0;
     pid_t pid = 0;
 
-    pathway = my_strcat("/bin/", parsed_input[0]);
+    src = find_path_cmd(env, parsed_input[0]);
+    if (!src) {
+        my_putstr(parsed_input[0]);
+        my_putstr(": Command not found.\n");
+        return (1);
+    }
     pid = fork();
     if (!pid) {
-        execve(pathway, parsed_input, env);
+        execve(src, parsed_input, env);
         return (0);
     }
     waitpid(pid, &wstatus, 0);
-    free(pathway);
+    free(src);
     return (1);
 }
