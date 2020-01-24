@@ -39,7 +39,7 @@ static bool_t check_existence(char **right_path, const char *given_path,
     return (FALSE);
 }
 
-void is_in_curdir(char **right_path, const char *bin)
+void is_in_dir(char **right_path, const char *bin)
 {
     struct dirent *dir_stat = NULL;
     DIR *directory = NULL;

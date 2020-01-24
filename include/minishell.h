@@ -28,7 +28,7 @@ int compute_cmd(char **parsed_input, char **env);
 //
 char *get_correct_pwd(const char *env_path, const char *binary_name);
 //
-void is_in_curdir(char **right_path, const char *bin);
+void is_in_dir(char **right_path, const char *bin);
 
 // Built-in's
 //exits from the mysh program

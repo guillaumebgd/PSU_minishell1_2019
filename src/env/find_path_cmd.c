@@ -80,7 +80,7 @@ static char *check_each_path_var(char *path_var, const char *binary_name)
     if (!right_path) {
         if (!find_char_in_str(binary_name, '/'))
             return (NULL);
-        is_in_curdir(&right_path, binary_name);
+        is_in_dir(&right_path, binary_name);
     }
     return (right_path);
 }
