@@ -1,5 +1,5 @@
 ##
-## EPITECH PROJECT, 2020
+## EPITECH PROJECT, 2019
 ## Makefile minishell_1
 ## File description:
 ## compiles c files with libs into the minishell1 program

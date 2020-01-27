@@ -1,6 +1,6 @@
 /*
-** EPITECH PROJECT, 2020
-** PSU_minishell1_2020
+** EPITECH PROJECT, 2019
+** PSU_minishell1_2019
 ** File description:
 ** computes a cmd with correct path, args and env
 */

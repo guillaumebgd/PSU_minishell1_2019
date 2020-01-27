@@ -1,8 +1,8 @@
 /*
-** EPITECH PROJECT, 2020
-** PSU_minishell1_2020
+** EPITECH PROJECT, 2019
+** PSU_minishell1_2019
 ** File description:
-** my_exit.c
+** computes a build-in if a sent input matches with one
 */
 
 #include "minishell.h"

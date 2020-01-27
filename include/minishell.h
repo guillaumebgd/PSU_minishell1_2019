@@ -1,6 +1,6 @@
 /*
-** EPITECH PROJECT, 2020
-** PSU_minishell1_2020
+** EPITECH PROJECT, 2019
+** PSU_minishell1_2019
 ** File description:
 ** header for the minishell1 project
 */
@@ -14,7 +14,7 @@ typedef enum bool_e {
     TRUE
 } bool_t;
 
-//oversees the program proccess
+//oversees the program processes
 void minishell(char **env);
 
 //prints the prompt and get the input given by the user

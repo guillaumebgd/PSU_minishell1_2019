@@ -27,6 +27,8 @@ int my_strlen(const char *str);
 int my_strnlen(const char *str, const int n);
 //computes with a limit set by a certain char c.
 int my_strlen_char(const char *str, const char c);
+//
+int my_strlen_cmpstr(const char *str, const char cmp[]);
 
 //-1 if there's an error, positive integer otherwise.
 int my_arrlen(char **array);
@@ -39,6 +41,8 @@ char *my_strdup(const char *template);
 char *my_strndup(const char *template, int n);
 //computes with a limit set by a certain char c.
 char *my_strdup_char(const char *template, const char c);
+//
+char *my_strdup_cmpstr(const char *template, const char cmp[]);
 
 //returns comparing first and second Negative Integer if first < second,
 //0 if first = second, Positive Interger if first > second.
@@ -50,7 +54,7 @@ int my_strncmp(const char *first, char const *second, const unsigned int n);
 char *my_strcat(const char *core, const char *to_append);
 
 //returns NULL if there's an issue.
-char **my_str_to_word_array(char *sentence, const char splitter,
+char **my_str_to_word_array(char *sentence, const char splitter[],
                                 const int freer);
 
 int find_char_in_str(const char *str, const char c);

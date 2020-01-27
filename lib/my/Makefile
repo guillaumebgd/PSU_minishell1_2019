@@ -22,7 +22,9 @@ SRC	=	./get_next_line.c			\
 		./my_strdup_char.c			\
 		./my_strcat.c				\
 		./my_str_to_word_array.c	\
-		./find_char_in_str.c
+		./find_char_in_str.c		\
+		./my_strlen_cmpstr.c		\
+		./my_strdup_cmpstr.c
 
 CFLAGS	=	-Wall -Wextra
 

@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include "my.h"
 
-int my_putstr(char const *str)
+int my_putstr(const char *str)
 {
     int size = my_strlen(str);
 

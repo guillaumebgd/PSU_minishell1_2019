@@ -1,6 +1,6 @@
 /*
-** EPITECH PROJECT, 2020
-** PSU_minishell1_2020
+** EPITECH PROJECT, 2019
+** PSU_minishell1_2019
 ** File description:
 ** finds the path where a binary cmd is located
 */
@@ -67,7 +67,7 @@ static void is_in_path(const char *env_path, const char *bin, char **path)
 
 static char *check_each_path_var(char *path_var, const char *binary_name)
 {
-    char **parsed_paths = my_str_to_word_array(path_var, ':', 0);
+    char **parsed_paths = my_str_to_word_array(path_var, ":", 0);
     char *right_path = NULL;
     int index = 0;
 
