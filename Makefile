@@ -21,7 +21,7 @@ CFLAGS	=	-Wall -Wextra
 
 CPPFLAGS	=	-I./include/
 
-LDFLAGS	=	-L./lib/my
+LDFLAGS	=	-L./lib/
 
 LDLIBS	=	-lmy
 

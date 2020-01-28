@@ -60,12 +60,14 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ)
 	ar rc $(NAME) $(OBJ)
+	cp $(NAME) ../
 
 clean:
 	$(RM) $(OBJ)
 
 fclean:	clean
 	$(RM) $(NAME)
+	$(RM) ../$(NAME)
 
 re:	fclean all
 
