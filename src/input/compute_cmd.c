@@ -6,6 +6,7 @@
 */
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <signal.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "my.h"
@@ -19,8 +20,7 @@ int compute_cmd(char **parsed_input, char **env)
 
     src = find_path_cmd(env, parsed_input[0]);
     if (!src) {
-        my_putstr(parsed_input[0]);
-        my_putstr(": Command not found.\n");
+        my_printf("%s: Command not found.\n", parsed_input[0]);
         return (1);
     }
     pid = fork();
@@ -32,3 +32,4 @@ int compute_cmd(char **parsed_input, char **env)
     free(src);
     return (1);
 }
+//signal(SIGINT, ctrl_c_handler);

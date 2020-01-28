@@ -32,9 +32,7 @@ char *print_prompt_get_input(void)
     char *cur_dir = NULL;
 
     cur_dir = get_curdir();
-    my_putstr("$ ");
-    my_putstr(cur_dir);
-    my_putstr(" > ");
+    my_printf("$ %s > ", cur_dir);
     if (cur_dir)
         free(cur_dir);
     return (get_next_line(0, 4096));

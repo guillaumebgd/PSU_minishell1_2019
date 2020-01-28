@@ -6,8 +6,8 @@
 */
 
 #include <stddef.h>
-#include "minishell.h"
 #include "my.h"
+#include "minishell.h"
 
 static bool_t special_input(const char *input, char **env)
 {

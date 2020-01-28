@@ -26,7 +26,7 @@ static int get_nb_words(const char *sentence, const char splitter[])
 }
 
 static char **fill_result(char *sentence, const char splitter[],
-                            char **res, const int freer)
+                            char **res, const unsigned int freer)
 {
     int idx = 0;
     int idx_res = 0;
@@ -47,7 +47,7 @@ static char **fill_result(char *sentence, const char splitter[],
 }
 
 char **my_str_to_word_array(char *sentence, const char splitters[],
-                            const int freer)
+                            const unsigned int freer)
 {
     char **res = NULL;
     int nb_words = 0;

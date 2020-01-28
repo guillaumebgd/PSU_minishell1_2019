@@ -2,42 +2,63 @@
 ## EPITECH PROJECT, 2019
 ## Makefile libmy
 ## File description:
-## proccess compilation for this lib
+## processes compilation for this lib
 ##
 
-SRC	=	./get_next_line.c			\
-		./my_putchar.c				\
+SRC	=	./my_putchar.c				\
+		./my_int_size.c				\
 		./my_strlen.c				\
 		./my_strnlen.c				\
 		./my_strlen_char.c			\
+		./my_strlen_cmpstr.c		\
 		./my_arrlen.c				\
 		./my_free_arr.c				\
+		./my_putstr.c				\
 		./my_getnbr.c				\
 		./my_put_nbr.c				\
-		./my_putstr.c				\
+		./my_put_nbr_u.c			\
+		./my_put_nbr_s.c			\
+		./my_put_nbr_su.c			\
+		./my_put_nbr_l.c			\
+		./my_put_nbr_ll.c			\
+		./my_put_nbr_lu.c			\
+		./my_put_nbr_llu.c			\
 		./my_strcmp.c				\
 		./my_strncmp.c				\
 		./my_strdup.c				\
 		./my_strndup.c				\
 		./my_strdup_char.c			\
+		./my_strdup_cmpstr.c		\
 		./my_strcat.c				\
 		./my_str_to_word_array.c	\
 		./find_char_in_str.c		\
-		./my_strlen_cmpstr.c		\
-		./my_strdup_cmpstr.c
+		./get_next_line.c
+
+SRCMYPRINTF	=	./my_printf/my_printf.c				\
+				./my_printf/checkers.c				\
+				./my_printf/get_flag.c				\
+				./my_printf/create_flag_array.c		\
+				./my_printf/redirect_putchar.c		\
+				./my_printf/redirect_put_nbr.c		\
+				./my_printf/redirect_short.c		\
+				./my_printf/redirect_long.c			\
+				./my_printf/redirect_percent.c		\
+				./my_printf/redirect_lower_upper.c	\
+				./my_printf/redirect_hashtag.c		\
+				./my_printf/redirect_add_ptr.c
 
 CFLAGS	=	-Wall -Wextra
 
 CPPFLAGS	=	-I./../../include/
 
-OBJ	=	$(SRC:.c=.o)
+OBJ	=	$(SRC:.c=.o) $(SRCMYPRINTF:.c=.o)
 
 NAME	=	libmy.a
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	ar rc $(NAME) *.o
+	ar rc $(NAME) $(OBJ)
 
 clean:
 	$(RM) $(OBJ)

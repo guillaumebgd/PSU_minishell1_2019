@@ -55,8 +55,7 @@ clean:
 	$(RM) vgcore.*
 
 fclean:	clean
-	$(RM) lib/my/*.a
-	$(RM) lib/my/*.o
+	$(MAKE) fclean -C lib/my
 
 re:	fclean all
 

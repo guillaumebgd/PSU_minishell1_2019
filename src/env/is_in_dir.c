@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** PSU_minishell1_2019
 ** File description:
-** is_in_curdir.c
+** checks if a binary is in a directory
 */
 
 #include <sys/stat.h>
