@@ -32,8 +32,10 @@ char *print_prompt_get_input(void)
     char *cur_dir = NULL;
 
     cur_dir = get_curdir();
-    my_printf("$ %s >> ", cur_dir);
-    if (cur_dir)
+    if (cur_dir) {
+        my_printf("$ %s >> ", cur_dir);
         free(cur_dir);
+    } else
+        my_printf("$ >> ");
     return (get_next_line(0, 4096));
 }
