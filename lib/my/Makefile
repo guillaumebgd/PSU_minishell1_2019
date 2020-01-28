@@ -45,7 +45,8 @@ SRCMYPRINTF	=	./my_printf/my_printf.c				\
 				./my_printf/redirect_percent.c		\
 				./my_printf/redirect_lower_upper.c	\
 				./my_printf/redirect_hashtag.c		\
-				./my_printf/redirect_add_ptr.c
+				./my_printf/redirect_add_ptr.c		\
+				./my_printf/my_flag_cmp.c
 
 CFLAGS	=	-Wall -Wextra
 
