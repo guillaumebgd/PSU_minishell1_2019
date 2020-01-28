@@ -32,4 +32,3 @@ int compute_cmd(char **parsed_input, char **env)
     free(src);
     return (1);
 }
-//signal(SIGINT, ctrl_c_handler);

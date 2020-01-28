@@ -16,7 +16,7 @@ static bool_t special_input(const char *input, char **env)
     if (len_input <= 0) {
         if (len_input == 0)
             minishell(env);
-        if (len_input < 0)
+        else
             my_putstr("exit\n");
         return (FALSE);
     }
@@ -32,7 +32,6 @@ void minishell(char **env)
     if (!special_input(input, env))
         return;
     parsed_input = my_str_to_word_array(input, " \t", 1);
-    //compute_built_in(parsed_input);
     if (!compute_cmd(parsed_input, env))
         return;
     minishell(env);
