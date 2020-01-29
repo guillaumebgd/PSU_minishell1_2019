@@ -11,6 +11,8 @@ SRC	=	./my_putchar.c				\
 		./my_strnlen.c				\
 		./my_strlen_char.c			\
 		./my_strlen_cmpstr.c		\
+		./my_arrdup.c				\
+		./my_append_to_array.c		\
 		./my_arrlen.c				\
 		./my_free_arr.c				\
 		./my_putstr.c				\
@@ -23,6 +25,7 @@ SRC	=	./my_putchar.c				\
 		./my_put_nbr_ll.c			\
 		./my_put_nbr_lu.c			\
 		./my_put_nbr_llu.c			\
+		./my_arrcmp.c				\
 		./my_strcmp.c				\
 		./my_strncmp.c				\
 		./my_strdup.c				\

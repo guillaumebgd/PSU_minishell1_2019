@@ -7,8 +7,9 @@
 
 #include "minishell.h"
 
-int main(int ac, char **av, char **env)
+int main(const int ac, const char * const *av,
+        const char * const *env)
 {
-    minishell(env);
+    setup_minishell(env);
     return (0);
 }

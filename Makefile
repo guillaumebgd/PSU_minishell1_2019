@@ -5,11 +5,16 @@
 ## compiles c files with libs into the minishell1 program
 ##
 
-SRC	=	src/minishell.c				\
-		src/input/compute_cmd.c		\
-		src/input/prompt.c			\
-		src/env/find_path_cmd.c		\
-		src/env/is_in_dir.c
+SRC	=	src/minishell.c							\
+		src/input/compute_cmd.c					\
+		src/input/prompt.c						\
+		src/env/find_path_cmd.c					\
+		src/env/is_in_dir.c						\
+		src/env/create_env_list_from_array.c	\
+		src/env/create_array_from_env_list.c	\
+		src/env/show_env.c						\
+		src/env/env_list_size.c					\
+		src/env/free_env_list.c
 
 MAIN	=	main.c
 

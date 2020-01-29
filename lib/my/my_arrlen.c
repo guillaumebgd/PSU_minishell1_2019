@@ -7,9 +7,10 @@
 
 int my_arrlen(char **array)
 {
-    int i = -1;
+    int i = 0;
 
     if (array)
-        while (array[++i]);
+        while (array[i])
+            i += 1;
     return (i);
 }

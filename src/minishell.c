@@ -9,13 +9,13 @@
 #include "my.h"
 #include "minishell.h"
 
-static bool_t special_input(const char *input, char **env)
+static bool_t special_input(const char *input, envg_list_t **envg_list)
 {
     int len_input = my_strlen(input);
 
     if (len_input <= 0) {
         if (len_input == 0)
-            minishell(env);
+            minishell(envg_list);
         else
             my_putstr("exit\n");
         return (FALSE);
@@ -23,16 +23,26 @@ static bool_t special_input(const char *input, char **env)
     return (TRUE);
 }
 
-void minishell(char **env)
+void minishell(envg_list_t **envg_list)
 {
     static char **parsed_input = NULL;
     static char *input = NULL;
 
-    input = print_prompt_get_input();
-    if (!special_input(input, env))
+    print_prompt();
+    input = get_next_line(0, 4096);
+    if (!special_input(input, envg_list))
         return;
     parsed_input = my_str_to_word_array(input, " \t", 1);
-    if (!compute_cmd(parsed_input, env))
+    if (!compute_cmd(parsed_input, envg_list))
         return;
-    minishell(env);
+    minishell(envg_list);
+}
+
+void setup_minishell(const char * const *env)
+{
+    envg_list_t *envg_list = NULL;
+
+    create_env_list_from_array(&envg_list, env);
+    minishell(&envg_list);
+    free_env_list(&envg_list);
 }

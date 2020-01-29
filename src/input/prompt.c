@@ -27,7 +27,7 @@ static char *get_curdir(void)
     return (current_directory);
 }
 
-char *print_prompt_get_input(void)
+void print_prompt(void)
 {
     char *cur_dir = NULL;
 
@@ -37,5 +37,4 @@ char *print_prompt_get_input(void)
         free(cur_dir);
     } else
         my_printf("$ >> ");
-    return (get_next_line(0, 4096));
 }

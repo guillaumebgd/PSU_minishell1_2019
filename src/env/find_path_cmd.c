@@ -15,6 +15,8 @@ static char *get_path_in_env(char **env)
 {
     int i = 0;
 
+    if (!env)
+        return (NULL);
     while (env[i]) {
         if (!(my_strncmp(env[i], "PATH=", 5)))
             return (&env[i][5]);
@@ -89,7 +91,11 @@ char *find_path_cmd(char **env, const char *binary_name)
 {
     char *path_var = get_path_in_env(env);
 
-    if (!path_var)
-        return (NULL);
+    if (!path_var) {
+        if (!find_char_in_str(binary_name, '/'))
+            return (NULL);
+        is_in_dir(&path_var, binary_name);
+        return (path_var);
+    }
     return (check_each_path_var(path_var, binary_name));
 }
