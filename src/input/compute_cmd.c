@@ -7,7 +7,9 @@
 
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <errno.h>
 #include <signal.h>
+#include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "my.h"
@@ -29,9 +31,27 @@ static int check_error(char **src, const char *cmd)
 
 static void child_process_work(char *src, char **parsed_input, char **envg)
 {
-    if (execve(src, parsed_input, envg) == -1)
-        my_printf("%s: Permission denied.\n", parsed_input[0]);
+    if (execve(src, parsed_input, envg) == -1) {
+        if (errno == ENOEXEC)
+            my_printf("%s: Exec format error. Wrong Architecture.\n",
+                        parsed_input[0]);
+        else
+            my_printf("%s: %s\n", parsed_input[0], strerror(errno));
+    }
     kill(getpid(), SIGCHLD);
+}
+
+static void check_wstatus_error(const int wstatus)
+{
+    if (WIFSIGNALED(wstatus)) {
+        if (WTERMSIG(wstatus) == SIGFPE)
+            my_putstr("Floating exception");
+        else
+            my_putstr(strsignal(WTERMSIG(wstatus)));
+        if (__WCOREDUMP(wstatus))
+            my_putstr(" (core dumped)");
+        my_putchar('\n');
+    }
 }
 
 int compute_cmd(char **parsed_input, envg_list_t **envg_list)
@@ -50,6 +70,7 @@ int compute_cmd(char **parsed_input, envg_list_t **envg_list)
         return (0);
     }
     waitpid(pid, &wstatus, 0);
+    check_wstatus_error(wstatus);
     if (src)
         free(src);
     return (1);
