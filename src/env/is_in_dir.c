@@ -39,12 +39,28 @@ static bool_t check_existence(char **right_path, const char *given_path,
     return (FALSE);
 }
 
+static int straight_dir_path(char **right_path, const char *bin)
+{
+    struct stat file_stat;
+
+    if (!bin)
+        return (0);
+    stat(bin, &file_stat);
+    if (S_ISDIR(file_stat.st_mode)) {
+        *right_path = my_strdup(bin);
+        return (1);
+    }
+    return (0);
+}
+
 void is_in_dir(char **right_path, const char *bin)
 {
     struct dirent *dir_stat = NULL;
     DIR *directory = NULL;
     char *given_path = NULL;
 
+    if (straight_dir_path(right_path, bin))
+        return;
     get_given_path(&given_path, bin);
     directory = opendir(given_path);
     if (!directory)

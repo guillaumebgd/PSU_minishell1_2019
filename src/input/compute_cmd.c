@@ -5,6 +5,7 @@
 ** computes a cmd with correct path, args and env
 */
 
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <errno.h>
@@ -17,11 +18,14 @@
 
 static int check_error(char **src, const char *cmd)
 {
+    struct stat file_stat;
+
     if (!(*src)) {
         my_printf("%s: Command not found.\n", cmd);
         return (1);
     }
-    if (*src && access(*src, X_OK) != 0) {
+    stat(*src, &file_stat);
+    if (access(*src, X_OK) != 0 || S_ISDIR(file_stat.st_mode)) {
         my_printf("%s: Permission denied.\n", cmd);
         free(*src);
         return (1);
