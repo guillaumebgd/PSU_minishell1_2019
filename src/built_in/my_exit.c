@@ -5,7 +5,16 @@
 ** exit for the minishell program
 */
 
-void my_exit(void)
+#include "my.h"
+
+int my_exit(char **parsed_input)
 {
-    exit(0);
+    int size = my_arrlen(parsed_input);
+
+    if (size != 1) {
+        my_putstr("exit: Expression Syntax.\n");
+        return (0);
+    }
+    my_putstr("exit\n");
+    return (1);
 }

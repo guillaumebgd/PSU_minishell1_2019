@@ -8,6 +8,9 @@
 SRC	=	src/minishell.c							\
 		src/input/compute_cmd.c					\
 		src/input/prompt.c						\
+		src/built_in/compute_built_in.c			\
+		src/built_in/my_env.c					\
+		src/built_in/my_exit.c					\
 		src/env/find_path_cmd.c					\
 		src/env/is_in_dir.c						\
 		src/env/create_env_list_from_array.c	\

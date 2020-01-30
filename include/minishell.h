@@ -57,10 +57,9 @@ void free_env_list(envg_list_t **head);
 // Built-in's
 
 //computes a built-in
-int compute_built_in(envg_list_t **envg_list,
-                    const char * const *parsed_input);
+int compute_built_in(envg_list_t **envg_list, char **parsed_input);
 //exits from the mysh program.
-void my_exit(void);
+int my_exit(char **parsed_input);
 //shows the current state of the env.
 void my_env(envg_list_t **envg_list);
 

@@ -27,14 +27,17 @@ void minishell(envg_list_t **envg_list)
 {
     static char **parsed_input = NULL;
     static char *input = NULL;
+    int is_built_in = 0;
 
     print_prompt();
     input = get_next_line(0, 4096);
     if (!special_input(input, envg_list))
         return;
     parsed_input = my_str_to_word_array(input, " \t", 1);
-    //compute_built_in(parsed_input);
-    if (!compute_cmd(parsed_input, envg_list))
+    is_built_in = compute_built_in(envg_list, parsed_input);
+    if (is_built_in == 1)
+        return;
+    if (is_built_in == -1 && !compute_cmd(parsed_input, envg_list))
         return;
     minishell(envg_list);
 }

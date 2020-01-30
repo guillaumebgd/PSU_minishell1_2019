@@ -75,4 +75,3 @@ int compute_cmd(char **parsed_input, envg_list_t **envg_list)
         free(src);
     return (1);
 }
-//signal(SIGINT, ctrl_c_handler);
