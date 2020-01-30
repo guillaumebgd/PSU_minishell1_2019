@@ -21,13 +21,21 @@ static int compare_input_built_in(const char *cmd)
     return (-1);
 }
 
-int compute_built_in(const char * const *parsed_input)
+int compute_built_in(envg_list_t **envg_list, const char * const *parsed_input)
 {
-    static const void (*redir_built_in[])(void) = {&my_exit, &my_cd, &my_env
-                                                &my_setenv, &my_unsetenv};
     int function_index = compare_input_built_in(parsed_input[0]);
 
     if (function_index == -1)
         return (-1);
-    redir_built_in[function_index]();
+    if (function_index == 0)
+        my_exit();
+    if (function_index == 1)
+        my_cd();
+    if (function_index == 2)
+        my_env(envg_list);
+    if (function_index == 3)
+        my_setenv();
+    if (function_index == 4)
+        my_unsetenv();
+    return (0);
 }

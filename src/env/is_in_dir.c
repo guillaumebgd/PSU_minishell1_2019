@@ -31,7 +31,7 @@ static bool_t check_existence(char **right_path, const char *given_path,
 
     file_path = get_correct_pwd(given_path, dir_stat->d_name);
     stat(file_path, &file);
-    if (!(S_ISDIR(file.st_mode)) && !(my_strcmp(file_path, bin))) {
+    if (!(my_strcmp(file_path, bin))) {
         *right_path = file_path;
         return (TRUE);
     }

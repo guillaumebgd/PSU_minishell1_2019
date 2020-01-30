@@ -57,7 +57,7 @@ static void is_in_path(const char *env_path, const char *bin, char **path)
     while (dir_stat) {
         file_path = get_correct_pwd(env_path, dir_stat->d_name);
         stat(file_path, &file);
-        if (!(S_ISDIR(file.st_mode)) && !(my_strcmp(dir_stat->d_name, bin))) {
+        if (!(my_strcmp(dir_stat->d_name, bin))) {
             *path = file_path;
             break;
         }

@@ -18,11 +18,12 @@ Test(create_env_list_from_array, basic_create)
     if (!my_env || !(my_env->next))
         cr_expect_neq(1, 1);
     else {
+        cr_expect_eq(my_env->prev, my_env->next->next->next);
         cr_expect_str_eq(my_env->var_name, "VAR");
         cr_expect_str_eq(my_env->var_value, "first_val");
         cr_expect_str_eq(my_env->next->var_name, "OH");
         cr_expect_str_eq(my_env->next->var_value, "second_val");
-        cr_expect_eq(my_env->next->next, NULL);
+        cr_expect_eq(my_env->prev->next, my_env);
     }
     free_env_list(&my_env);
 }

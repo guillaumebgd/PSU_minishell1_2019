@@ -18,6 +18,7 @@ typedef struct envg_list_s {
     char *var_name;
     char *var_value;
     struct envg_list_s *next;
+    struct envg_list_s *prev;
 } envg_list_t;
 
 //oversees the program processes
@@ -30,7 +31,6 @@ void print_prompt(void);
 
 //checks if the given command can be found in folders listed in path
 char *find_path_cmd(char **env, const char *binary_name);
-
 //computes the command found in path
 int compute_cmd(char **parsed_input, envg_list_t **envg_list);
 //tries to find if a binary is located in path given into the PATH variable
@@ -44,15 +44,24 @@ void create_env_list_from_array(envg_list_t **envg_list,
 //creates a char ** corresponding to an env from the env list.
 char **create_array_from_env_list(envg_list_t *envg_list);
 //gets the size of the env list.
-int env_list_size(const envg_list_t *env_list);
+int env_list_size(envg_list_t *head);
 //shows the environment.
 void show_env(envg_list_t **envg_list);
+//destroys a node targeted by unsetenv.
+int destroy_env_var(envg_list_t **envg_list, const char *var_name);
+//frees a node from the env list.
+void free_node(envg_list_t *tmp);
 //frees the allocated memory for the env list.
 void free_env_list(envg_list_t **head);
 
 // Built-in's
 
+//computes a built-in
+int compute_built_in(envg_list_t **envg_list,
+                    const char * const *parsed_input);
 //exits from the mysh program.
 void my_exit(void);
+//shows the current state of the env.
+void my_env(envg_list_t **envg_list);
 
 #endif /* MINISHELL_H_ */

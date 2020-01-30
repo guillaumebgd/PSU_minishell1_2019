@@ -12,7 +12,6 @@
 static void add_node(envg_list_t **head, const char *env_lign)
 {
     envg_list_t *node = NULL;
-    envg_list_t *tmp = NULL;
     int index = 0;
 
     if (!(*head))
@@ -21,12 +20,13 @@ static void add_node(envg_list_t **head, const char *env_lign)
     if (!node)
         return;
     node->var_name = my_strdup_char(env_lign, '=');
-    while (env_lign[index] != '=')
+    while (env_lign[index] && env_lign[index] != '=')
         index += 1;
     node->var_value = my_strdup(&env_lign[index + 1]);
-    node->next = NULL;
-    for (tmp = (*head); tmp->next; tmp = tmp->next);
-    tmp->next = node;
+    node->next = (*head);
+    node->prev = (*head)->prev;
+    (*head)->prev->next = node;
+    (*head)->prev = node;
 }
 
 static void add_first_node(envg_list_t **head, const char *env_lign)
@@ -38,23 +38,11 @@ static void add_first_node(envg_list_t **head, const char *env_lign)
     if (!node)
         return;
     node->var_name = my_strdup_char(env_lign, '=');
-    while (env_lign[index] != '=')
+    while (env_lign[index] && env_lign[index] != '=')
         index += 1;
     node->var_value = my_strdup(&env_lign[index + 1]);
-    node->next = NULL;
-    (*head) = node;
-}
-
-static void create_null_env(envg_list_t **head)
-{
-    envg_list_t *node = NULL;
-
-    node = malloc(sizeof(envg_list_t));
-    if (!node)
-        return;
-    node->var_name = NULL;
-    node->var_value = NULL;
-    node->next = NULL;
+    node->next = node;
+    node->prev = node;
     (*head) = node;
 }
 

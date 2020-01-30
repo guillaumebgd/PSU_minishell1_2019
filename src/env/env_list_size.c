@@ -8,14 +8,15 @@
 #include <stddef.h>
 #include "minishell.h"
 
-int env_list_size(const envg_list_t *env_list)
+int env_list_size(envg_list_t *head)
 {
     envg_list_t *tmp = NULL;
-    int index = 1;
+    int index = 0;
 
-    if (!env_list)
+    if (!head)
         return (0);
-    for (tmp = (envg_list_t *)env_list; tmp->next; tmp = tmp->next)
+    for (tmp = head; tmp != head->prev; tmp = tmp->next)
         index += 1;
+    index += 1;
     return (index);
 }
