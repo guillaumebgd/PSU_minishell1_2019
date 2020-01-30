@@ -6,6 +6,10 @@
 ##
 
 SRC	=	./my_putchar.c				\
+		./my_isnum.c				\
+		./my_isalpha.c				\
+		./my_isalphanum.c			\
+		./my_str_is_alphanum.c		\
 		./my_int_size.c				\
 		./my_strlen.c				\
 		./my_strnlen.c				\

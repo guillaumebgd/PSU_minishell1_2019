@@ -15,6 +15,11 @@ int my_putchar(const char c);
 int my_putstr(const char *str);
 int my_getnbr(const char *str);
 
+int my_isalpha(const char c);
+int my_isnum(const char c);
+int my_isalphanum(const char c);
+int my_str_is_alphanum(const char *str);
+
 // prints onto the stdout with custom flags to print variables
 int my_printf(char const *input, ...);
 // gets a line from a file, gets the next one at each function call

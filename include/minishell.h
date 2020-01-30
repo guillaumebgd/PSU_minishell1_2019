@@ -47,6 +47,9 @@ char **create_array_from_env_list(envg_list_t *envg_list);
 int env_list_size(envg_list_t *head);
 //shows the environment.
 void show_env(envg_list_t **envg_list);
+//adds a new variable to the environment.
+void add_new_env_var(envg_list_t **envg_list, const char *var_name,
+                    const char *var_value);
 //destroys a node targeted by unsetenv.
 int destroy_env_var(envg_list_t **envg_list, const char *var_name);
 //frees a node from the env list.
@@ -62,5 +65,7 @@ int compute_built_in(envg_list_t **envg_list, char **parsed_input);
 int my_exit(char **parsed_input);
 //shows the current state of the env.
 void my_env(envg_list_t **envg_list);
+//sets a variable into the env list with a value.
+void my_setenv(envg_list_t **head, char **parsed_input);
 
 #endif /* MINISHELL_H_ */

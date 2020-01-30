@@ -6,6 +6,7 @@
 */
 
 #include <stdlib.h>
+#include "my.h"
 #include "minishell.h"
 
 static void add_node(envg_list_t **head, const char *var_name,

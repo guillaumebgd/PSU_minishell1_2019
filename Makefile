@@ -10,11 +10,13 @@ SRC	=	src/minishell.c							\
 		src/input/prompt.c						\
 		src/built_in/compute_built_in.c			\
 		src/built_in/my_env.c					\
+		src/built_in/my_setenv.c				\
 		src/built_in/my_exit.c					\
 		src/env/find_path_cmd.c					\
 		src/env/is_in_dir.c						\
 		src/env/create_env_list_from_array.c	\
 		src/env/create_array_from_env_list.c	\
+		src/env/add_new_env_var.c				\
 		src/env/destroy_env_var.c				\
 		src/env/show_env.c						\
 		src/env/env_list_size.c					\
