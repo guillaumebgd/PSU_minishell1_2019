@@ -18,6 +18,9 @@ static void get_given_path(char **given_path, const char *bin)
 
     while (index >= 0 && bin[index] != '/')
         index -= 1;
+    while (index >= 0 && bin[index] == '/')
+        index -= 1;
+    index += 1;
     if (index == -1)
         return;
     *given_path = my_strndup(bin, index);
@@ -31,7 +34,7 @@ static bool_t check_existence(char **right_path, const char *given_path,
 
     file_path = get_correct_pwd(given_path, dir_stat->d_name);
     stat(file_path, &file);
-    if (!(my_strcmp(file_path, bin))) {
+    if (!my_strcmp(file_path, bin, '/')) {
         *right_path = file_path;
         return (TRUE);
     }

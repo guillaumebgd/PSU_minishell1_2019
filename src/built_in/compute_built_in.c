@@ -16,7 +16,7 @@ static int compare_input_built_in(const char *cmd)
     int index = 0;
 
     while (built_ins[index]) {
-        if (!my_strcmp(built_ins[index], cmd))
+        if (!my_strcmp(built_ins[index], cmd, 0))
             return (index);
         index += 1;
     }

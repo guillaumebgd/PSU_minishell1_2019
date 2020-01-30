@@ -39,15 +39,15 @@ LDLIBTEST	=	-lmy -lcriterion
 all:	$(NAME)
 
 $(NAME):
-	$(MAKE) -C lib/my
+	$(MAKE) -sC lib/my
 	$(CC) -o $@ $(MAIN) $(SRC) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
 
 debug:
-	$(MAKE) -C lib/my
+	$(MAKE) -sC lib/my
 	$(CC) -g -o $@ $(SRC) $(MAIN) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
 
 tests_run:
-	$(MAKE) -C lib/my
+	$(MAKE) -sC lib/my
 	$(CC) -o $@ $(SRC) tests/*.c $(CPPFLAGS) $(LDFLAGS) $(LDLIBTEST) --coverage
 	./$@
 	$(RM) $@

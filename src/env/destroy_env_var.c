@@ -16,10 +16,10 @@ static envg_list_t *get_var_in_env(envg_list_t **head, const char *var_name)
     if (!(*head))
         return (NULL);
     for (tmp = (*head); tmp != (*head)->prev; tmp = tmp->next) {
-        if (!my_strcmp(tmp->var_name, var_name))
+        if (!my_strcmp(tmp->var_name, var_name, 0))
             return (tmp);
     }
-    if (!my_strcmp(tmp->var_name, var_name))
+    if (!my_strcmp(tmp->var_name, var_name, 0))
         return (tmp);
     return (NULL);
 }
