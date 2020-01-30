@@ -35,8 +35,6 @@ char **my_append_to_array(char **array, char *str, const int freer)
 
     if (!str)
         return (my_arrdup((char const * const *)array));
-    if (!array)
-        size -= 1;
     res = malloc(sizeof(char *) * (size + 2));
     if (!res)
         return (NULL);

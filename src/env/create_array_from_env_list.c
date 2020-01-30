@@ -28,8 +28,6 @@ char **create_array_from_env_list(envg_list_t *envg_list)
     int size = env_list_size(envg_list);
     int index = 0;
 
-    if (size == 0)
-        return (NULL);
     while (index < size) {
         var = get_var(envg_list);
         envg = my_append_to_array(envg, var, 1);
