@@ -26,6 +26,8 @@ void setup_minishell(const char * const *env);
 //minishell loop
 void minishell(envg_list_t **envg_list);
 
+//gets the current directory path.
+char *get_current_pwd(void);
 //prints the prompt and get the input given by the user
 void print_prompt(void);
 

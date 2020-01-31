@@ -12,19 +12,6 @@
 #include "my.h"
 #include "minishell.h"
 
-static char *get_current_pwd(void)
-{
-    char *pwd = NULL;
-
-    pwd = malloc(sizeof(char) * 1025);
-    if (pwd) {
-        pwd[1024] = '\0';
-        getcwd(pwd, 1025);
-    } else
-        return (NULL);
-    return (pwd);
-}
-
 static void set_old_pwd(envg_list_t **head, char *oldpwd)
 {
     my_setenv(head, (char *[]){"setenv", "OLDPWD", oldpwd, NULL});
@@ -41,16 +28,31 @@ static void set_new_pwd(envg_list_t **head)
         free(new_cur_pwd);
 }
 
-static void compute_cd(const char *pathway)
+static void change_working_dir(const char *pathway)
 {
     if (chdir(pathway) == -1)
         my_printf("%s: %s\n", pathway, strerror(errno));
 }
 
+static void compute_cd(envg_list_t **head, char **parsed_input, const int ac)
+{
+    envg_list_t *tmp = NULL;
+
+    if (ac == 1 || !my_strcmp(parsed_input[1], "~", 0)) {
+        tmp = is_var_in_env(head, "HOME");
+        if (!tmp)
+            my_putstr("cd: No home directory.\n");
+        else
+            change_working_dir(tmp->var_value);
+    } else if (!my_strcmp(parsed_input[1], "-", 0))
+        change_working_dir(is_var_in_env(head, "OLDPWD")->var_value);
+    else
+        change_working_dir(parsed_input[1]);
+}
+
 void my_cd(envg_list_t **head, char **parsed_input)
 {
     char *oldpwd = get_current_pwd();
-    envg_list_t *tmp = NULL;
     int ac = my_arrlen(parsed_input);
 
     if (ac < 1)
@@ -59,16 +61,7 @@ void my_cd(envg_list_t **head, char **parsed_input)
         my_putstr("cd: Too many arguments.\n");
         return;
     }
-    if (ac == 1 || !my_strcmp(parsed_input[1], "~", 0)) {
-        tmp = is_var_in_env(head, "HOME");
-        if (!tmp)
-            my_putstr("cd: No home directory.\n");
-        else
-            compute_cd(tmp->var_value);
-    } else if (!my_strcmp(parsed_input[1], "-", 0))
-        compute_cd(is_var_in_env(head, "OLDPWD")->var_value);
-    else
-        compute_cd(parsed_input[1]);
+    compute_cd(head, parsed_input, ac);
     set_old_pwd(head, oldpwd);
     set_new_pwd(head);
 }
