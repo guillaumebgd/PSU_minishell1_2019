@@ -48,7 +48,8 @@ static int straight_dir_path(char **right_path, const char *bin)
 
     if (!bin)
         return (0);
-    stat(bin, &file_stat);
+    if (stat(bin, &file_stat) < 0)
+        return (0);
     if (S_ISDIR(file_stat.st_mode)) {
         *right_path = my_strdup(bin);
         return (1);
