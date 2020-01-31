@@ -17,7 +17,7 @@ static void change_working_dir(const char *pathway, const int home)
 {
     struct stat file_stat;
 
-    if (!pathway)
+    if (!pathway || !pathway[0])
         return;
     if (chdir(pathway) == -1) {
         stat(pathway, &file_stat);
