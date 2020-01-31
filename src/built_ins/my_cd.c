@@ -22,7 +22,7 @@ static void change_working_dir(const char *pathway, const int home)
     if (chdir(pathway) == -1) {
         stat(pathway, &file_stat);
         if (!S_ISDIR(file_stat.st_mode))
-            my_printf("%s: Not a directory.\n", pathway);
+            my_printf("%s: Not a directory\n", pathway);
         else if (home)
             my_printf("cd: %s\n", strerror(errno));
         else
@@ -45,6 +45,8 @@ static void compute_cd(envg_list_t **head, char **parsed_input, const int ac)
         last_dir = is_var_in_env(head, "OLDPWD");
         if (last_dir)
             change_working_dir(last_dir->var_value, 0);
+        else
+            my_printf(": %s.\n", strerror(ENOENT));
     } else
         change_working_dir(parsed_input[1], 0);
 }
