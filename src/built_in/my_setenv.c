@@ -9,7 +9,7 @@
 #include "my.h"
 #include "minishell.h"
 
-static envg_list_t *is_var_in_env(envg_list_t **head, const char *var_name)
+envg_list_t *is_var_in_env(envg_list_t **head, const char *var_name)
 {
     envg_list_t *tmp = NULL;
 

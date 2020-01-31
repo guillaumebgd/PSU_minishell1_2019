@@ -61,11 +61,17 @@ void free_env_list(envg_list_t **head);
 
 //computes a built-in
 int compute_built_in(envg_list_t **envg_list, char **parsed_input);
+//returns a pointer to a variable in env list.
+envg_list_t *is_var_in_env(envg_list_t **head, const char *var_name);
+//allows to change working directory.
+void my_cd(envg_list_t **head, char **parsed_input);
 //exits from the mysh program.
 int my_exit(char **parsed_input);
 //shows the current state of the env.
 void my_env(envg_list_t **envg_list);
 //sets a variable into the env list with a value.
 void my_setenv(envg_list_t **head, char **parsed_input);
+//removes variables from env.
+void my_unsetenv(envg_list_t **head, char **parsed_input);
 
 #endif /* MINISHELL_H_ */

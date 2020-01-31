@@ -9,8 +9,10 @@ SRC	=	src/minishell.c							\
 		src/input/compute_cmd.c					\
 		src/input/prompt.c						\
 		src/built_in/compute_built_in.c			\
+		src/built_in/my_cd.c					\
 		src/built_in/my_env.c					\
 		src/built_in/my_setenv.c				\
+		src/built_in/my_unsetenv.c				\
 		src/built_in/my_exit.c					\
 		src/env/find_path_cmd.c					\
 		src/env/is_in_dir.c						\
@@ -66,7 +68,7 @@ clean:
 	$(RM) vgcore.*
 
 fclean:	clean
-	$(MAKE) fclean -C lib/my
+	$(MAKE) fclean -sC lib/my
 
 re:	fclean all
 

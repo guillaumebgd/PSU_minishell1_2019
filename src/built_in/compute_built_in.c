@@ -31,9 +31,13 @@ int compute_built_in(envg_list_t **envg_list, char **parsed_input)
         return (-1);
     if (function_index == 0)
         return (my_exit(parsed_input));
+    if (function_index == 1)
+        my_cd(envg_list, parsed_input);
     if (function_index == 2)
         my_env(envg_list);
     if (function_index == 3)
         my_setenv(envg_list, parsed_input);
+    if (function_index == 4)
+        my_unsetenv(envg_list, parsed_input);
     return (0);
 }
