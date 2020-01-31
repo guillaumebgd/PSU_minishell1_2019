@@ -44,6 +44,7 @@ int my_strnlen(const char *str, const int n);
 int my_strlen_char(const char *str, const char c);
 int my_strlen_cmpstr(const char *str, const char cmp[]);
 
+void my_show_arr(char **array);
 int my_arrcmp(char **first, char **second);
 char **my_arrdup(const char * const *template);
 char **my_append_to_array(char **array, char *str, const int freer);

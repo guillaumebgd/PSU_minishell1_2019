@@ -18,7 +18,7 @@ char *my_strdup_char(const char *template, const char c)
     if (!result)
         return (NULL);
     result[size] = '\0';
-    while (template[count_dup] != '\0' && template[count_dup] != c) {
+    while (template[count_dup] && template[count_dup] != c) {
         result[count_dup] = template[count_dup];
         count_dup += 1;
     }

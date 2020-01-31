@@ -18,6 +18,7 @@ SRC	=	./my_putchar.c				\
 		./my_arrdup.c				\
 		./my_append_to_array.c		\
 		./my_arrlen.c				\
+		./my_show_arr.c				\
 		./my_free_arr.c				\
 		./my_putstr.c				\
 		./my_getnbr.c				\

@@ -8,36 +8,36 @@
 #include <stdlib.h>
 #include "my.h"
 
-static int get_nb_words(const char *sentence, const char splitter[])
+static int get_nb_words(const char *sentence, const char splitters[])
 {
     int nb_words = 0;
     int idx = 0;
 
-    while (sentence[idx] && find_char_in_str(splitter, sentence[idx]))
+    while (sentence[idx] && find_char_in_str(splitters, sentence[idx]))
         idx += 1;
     while (sentence[idx]) {
-        while (sentence[idx] && !find_char_in_str(splitter, sentence[idx]))
+        while (sentence[idx] && !find_char_in_str(splitters, sentence[idx]))
             idx += 1;
-        while (sentence[idx] && find_char_in_str(splitter, sentence[idx]))
+        while (sentence[idx] && find_char_in_str(splitters, sentence[idx]))
             idx += 1;
         nb_words += 1;
     }
     return (nb_words);
 }
 
-static char **fill_result(char *sentence, const char splitter[],
+static char **fill_result(char *sentence, const char splitters[],
                             char **res, const unsigned int freer)
 {
     int idx = 0;
     int idx_res = 0;
 
-    while (sentence[idx] && find_char_in_str(splitter, sentence[idx]))
+    while (sentence[idx] && find_char_in_str(splitters, sentence[idx]))
         idx += 1;
     while (sentence[idx]) {
-        res[idx_res] = my_strdup_char(&sentence[idx], splitter[0]);
-        while (sentence[idx] && !find_char_in_str(splitter, sentence[idx]))
+        res[idx_res] = my_strdup_cmpstr(&sentence[idx], splitters);
+        while (sentence[idx] && !find_char_in_str(splitters, sentence[idx]))
             idx += 1;
-        while (sentence[idx] && find_char_in_str(splitter, sentence[idx]))
+        while (sentence[idx] && find_char_in_str(splitters, sentence[idx]))
             idx += 1;
         idx_res += 1;
     }
