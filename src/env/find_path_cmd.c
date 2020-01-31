@@ -91,7 +91,7 @@ char *find_path_cmd(char **env, const char *binary_name)
 {
     char *path_var = get_path_in_env(env);
 
-    if (!path_var) {
+    if (!path_var || !path_var[0]) {
         if (!find_char_in_str(binary_name, '/'))
             return (NULL);
         is_in_dir(&path_var, binary_name);
