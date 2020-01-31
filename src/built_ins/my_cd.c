@@ -32,17 +32,20 @@ static void change_working_dir(const char *pathway, const int home)
 
 static void compute_cd(envg_list_t **head, char **parsed_input, const int ac)
 {
-    envg_list_t *tmp = NULL;
+    envg_list_t *home = NULL;
+    envg_list_t *last_dir = NULL;
 
     if (ac == 1 || !my_strcmp(parsed_input[1], "~", 0)) {
-        tmp = is_var_in_env(head, "HOME");
-        if (!tmp)
+        home = is_var_in_env(head, "HOME");
+        if (!home)
             my_putstr("cd: No home directory.\n");
         else
-            change_working_dir(tmp->var_value, 1);
-    } else if (!my_strcmp(parsed_input[1], "-", 0))
-        change_working_dir(is_var_in_env(head, "OLDPWD")->var_value, 0);
-    else
+            change_working_dir(home->var_value, 1);
+    } else if (!my_strcmp(parsed_input[1], "-", 0)) {
+        last_dir = is_var_in_env(head, "OLDPWD");
+        if (last_dir)
+            change_working_dir(last_dir->var_value, 0);
+    } else
         change_working_dir(parsed_input[1], 0);
 }
 
