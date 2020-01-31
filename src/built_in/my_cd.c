@@ -5,6 +5,7 @@
 ** computes built-in cd
 */
 
+#include <sys/stat.h>
 #include <errno.h>
 #include <string.h>
 #include <unistd.h>
@@ -12,26 +13,21 @@
 #include "my.h"
 #include "minishell.h"
 
-static void set_old_pwd(envg_list_t **head, char *oldpwd)
+static void change_working_dir(const char *pathway, const int home)
 {
-    my_setenv(head, (char *[]){"setenv", "OLDPWD", oldpwd, NULL});
-    if (oldpwd)
-        free(oldpwd);
-}
+    struct stat file_stat;
 
-static void set_new_pwd(envg_list_t **head)
-{
-    char *new_cur_pwd = get_current_pwd();
-
-    my_setenv(head, (char *[]){"setenv", "PWD", new_cur_pwd, NULL});
-    if (new_cur_pwd)
-        free(new_cur_pwd);
-}
-
-static void change_working_dir(const char *pathway)
-{
-    if (chdir(pathway) == -1)
-        my_printf("%s: %s\n", pathway, strerror(errno));
+    if (!pathway)
+        return;
+    if (chdir(pathway) == -1) {
+        stat(pathway, &file_stat);
+        if (!S_ISDIR(file_stat.st_mode))
+            my_printf("%s: Not a directory\n", pathway);
+        else if (home)
+            my_printf("cd: %s\n", strerror(errno));
+        else
+            my_printf("%s: %s\n", pathway, strerror(errno));
+    }
 }
 
 static void compute_cd(envg_list_t **head, char **parsed_input, const int ac)
@@ -43,16 +39,17 @@ static void compute_cd(envg_list_t **head, char **parsed_input, const int ac)
         if (!tmp)
             my_putstr("cd: No home directory.\n");
         else
-            change_working_dir(tmp->var_value);
+            change_working_dir(tmp->var_value, 1);
     } else if (!my_strcmp(parsed_input[1], "-", 0))
-        change_working_dir(is_var_in_env(head, "OLDPWD")->var_value);
+        change_working_dir(is_var_in_env(head, "OLDPWD")->var_value, 0);
     else
-        change_working_dir(parsed_input[1]);
+        change_working_dir(parsed_input[1], 0);
 }
 
 void my_cd(envg_list_t **head, char **parsed_input)
 {
     char *oldpwd = get_current_pwd();
+    char *new_cur_pwd = NULL;
     int ac = my_arrlen(parsed_input);
 
     if (ac < 1)
@@ -62,6 +59,11 @@ void my_cd(envg_list_t **head, char **parsed_input)
         return;
     }
     compute_cd(head, parsed_input, ac);
-    set_old_pwd(head, oldpwd);
-    set_new_pwd(head);
+    new_cur_pwd = get_current_pwd();
+    my_setenv(head, (char *[]){"setenv", "OLDPWD", oldpwd, NULL});
+    if (oldpwd)
+        free(oldpwd);
+    my_setenv(head, (char *[]){"setenv", "PWD", new_cur_pwd, NULL});
+    if (new_cur_pwd)
+        free(new_cur_pwd);
 }
