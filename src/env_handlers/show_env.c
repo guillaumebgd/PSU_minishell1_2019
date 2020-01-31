@@ -15,7 +15,10 @@ void show_env(envg_list_t **head)
 
     if (!(*head))
         return;
-    for (tmp = (*head); tmp != (*head)->prev; tmp = tmp->next)
+    for (tmp = (*head); tmp != (*head)->prev; tmp = tmp->next) {
+        if (tmp->var_name)
+            my_printf("%s=%s\n", tmp->var_name, tmp->var_value);
+    }
+    if (tmp->var_name)
         my_printf("%s=%s\n", tmp->var_name, tmp->var_value);
-    my_printf("%s=%s\n", tmp->var_name, tmp->var_value);
 }

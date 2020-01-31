@@ -50,6 +50,8 @@ static void check_wstatus_error(const int wstatus)
     if (WIFSIGNALED(wstatus)) {
         if (WTERMSIG(wstatus) == SIGFPE)
             my_putstr("Floating exception");
+        else if (WTERMSIG(wstatus) == SIGSTOP || WTERMSIG(wstatus) == SIGINT)
+            return;
         else
             my_putstr(strsignal(WTERMSIG(wstatus)));
         if (__WCOREDUMP(wstatus))
