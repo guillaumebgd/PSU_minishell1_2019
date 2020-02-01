@@ -14,6 +14,8 @@ char *my_strdup_char(const char *template, const char c)
     int size = my_strlen_char(template, c);
     int count_dup = 0;
 
+    if (!template)
+        return (NULL);
     result = malloc(sizeof(char) * (size + 1));
     if (!result)
         return (NULL);

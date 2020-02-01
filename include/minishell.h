@@ -14,6 +14,15 @@ typedef enum bool_e {
     TRUE
 } bool_t;
 
+typedef enum built_ins_e {
+    NO_MATCH = -1,
+    MY_EXIT,
+    MY_CD,
+    MY_ENV,
+    MY_SETENV,
+    MY_UNSETENV
+} built_ins_t;
+
 typedef struct envg_list_s {
     char *var_name;
     char *var_value;

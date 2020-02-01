@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** PSU_minishell1_2019
 ** File description:
-** my_env.c
+** computes the env built-in
 */
 
 #include "minishell.h"

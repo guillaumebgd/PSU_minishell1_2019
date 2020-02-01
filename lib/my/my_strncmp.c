@@ -11,6 +11,11 @@ int my_strncmp(const char *first, const char *second, const unsigned int n)
 {
     int index = 0;
 
+    if (!first || !second) {
+        if (!first && !second)
+            return (0);
+        return (1);
+    }
     while (index < (int)n) {
         if (first[index] != second[index])
             return (1);

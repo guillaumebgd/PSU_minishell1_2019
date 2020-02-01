@@ -18,7 +18,7 @@ static char *get_path_in_env(char **env)
     if (!env)
         return (NULL);
     while (env[i]) {
-        if (!(my_strncmp(env[i], "PATH=", 5)))
+        if (!my_strncmp(env[i], "PATH=", 5))
             return (&env[i][5]);
         i += 1;
     }

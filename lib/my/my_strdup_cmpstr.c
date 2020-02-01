@@ -14,6 +14,8 @@ char *my_strdup_cmpstr(const char *template, const char cmp[])
     int size = my_strlen_cmpstr(template, cmp);
     int count_dup = 0;
 
+    if (!template)
+        return (NULL);
     result = malloc(sizeof(char) * (size + 1));
     if (!result)
         return (NULL);

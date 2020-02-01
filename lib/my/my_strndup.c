@@ -14,6 +14,8 @@ char *my_strndup(const char *template, int n)
     int size = my_strnlen(template, n);
     int index = 0;
 
+    if (!template)
+        return (NULL);
     result = malloc(sizeof(char) * (size + 1));
     if (!result)
         return (NULL);

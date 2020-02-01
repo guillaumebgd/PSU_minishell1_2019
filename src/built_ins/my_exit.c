@@ -2,10 +2,11 @@
 ** EPITECH PROJECT, 2020
 ** PSU_minishell1_2020
 ** File description:
-** exit for the minishell program
+** exits the minishell program
 */
 
 #include "my.h"
+#include "minishell.h"
 
 int my_exit(char **parsed_input)
 {
@@ -13,8 +14,8 @@ int my_exit(char **parsed_input)
 
     if (size != 1) {
         my_putstr("exit: Expression Syntax.\n");
-        return (0);
+        return (FALSE);
     }
     my_putstr("exit\n");
-    return (1);
+    return (TRUE);
 }
