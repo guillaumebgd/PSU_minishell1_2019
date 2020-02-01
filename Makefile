@@ -6,6 +6,7 @@
 ##
 
 SRC	=	src/minishell.c									\
+		src/usage.c										\
 		src/input_handlers/compute_cmd.c				\
 		src/input_handlers/prompt.c						\
 		src/built_ins/compute_built_in.c				\

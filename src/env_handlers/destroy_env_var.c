@@ -39,11 +39,11 @@ int destroy_env_var(envg_list_t **envg_list, const char *var_name)
         if ((*envg_list) == (*envg_list)->next) {
             free_node(variable);
             (*envg_list) = NULL;
-            return (FALSE);
+            return (0);
         }
     }
     variable->prev->next = variable->next;
     variable->next->prev = variable->prev;
     free_node(variable);
-    return (TRUE);
+    return (1);
 }

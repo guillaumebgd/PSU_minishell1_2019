@@ -10,6 +10,8 @@
 
 void free_node(envg_list_t *tmp)
 {
+    if (!tmp)
+        return;
     if (tmp->var_name)
         free(tmp->var_name);
     if (tmp->var_value)
