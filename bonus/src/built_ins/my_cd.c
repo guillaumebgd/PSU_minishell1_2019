@@ -24,7 +24,10 @@ static void change_working_dir(const char *pathway, const int home,
     }
     if (chdir(pathway) == -1) {
         *success = FALSE;
-        stat(pathway, &file_stat);
+        if (stat(pathway, &file_stat) == -1) {
+            my_printf("%s: Not a directory.\n", pathway);
+            return;
+        }
         if (!S_ISDIR(file_stat.st_mode))
             my_printf("%s: Not a directory.\n", pathway);
         else if (home)
