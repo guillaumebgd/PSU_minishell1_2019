@@ -44,29 +44,35 @@ static void set_var(const int ac, envg_list_t **head, char **parsed_input)
 }
 
 static void handle_setenv(envg_list_t **head, const int ac,
-                        char **parsed_input)
+                        char **parsed_input, bool_t *success)
 {
-    if (!my_isalpha(parsed_input[1][0]))
+    if (!my_isalpha(parsed_input[1][0])) {
+        *success = FALSE;
         my_putstr("setenv: Variable name must begin with a letter.\n");
-    else if (!my_str_is_alphanum(parsed_input[1]))
+    } else if (!my_str_is_alphanum(parsed_input[1])) {
+        *success = FALSE;
         my_putstr("setenv: Variable name must contain"
                     " alphanumeric characters.\n");
-    else
+    } else
         set_var(ac, head, parsed_input);
 }
 
-void my_setenv(envg_list_t **head, char **parsed_input)
+void my_setenv(envg_list_t **head, char **parsed_input, bool_t *success)
 {
     int ac = my_arrlen(parsed_input);
 
-    if (ac <= 0)
+    if (ac <= 0) {
+        *success = FALSE;
         return;
+    }
     if (ac == 1) {
         my_env(head);
         return;
     }
     if (ac == 2 || ac == 3)
-        handle_setenv(head, ac, parsed_input);
-    else
+        handle_setenv(head, ac, parsed_input, success);
+    else {
+        *success = FALSE;
         my_putstr("setenv: Too many arguments.\n");
+    }
 }
