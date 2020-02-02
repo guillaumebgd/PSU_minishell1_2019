@@ -33,7 +33,7 @@ Test(find_path_cmd, existant_file_in_curdir)
         cr_expect_neq(1, 1);
     if (path)
         free(path);
-    is_in_dir(&path, "./main.c");
+    is_in_dir(&path, "./src/main.c");
     if (path != NULL)
         cr_expect_eq(1, 1);
     else
