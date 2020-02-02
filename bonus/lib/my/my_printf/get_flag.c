@@ -5,9 +5,20 @@
 ** gets the called flag and redirects towards the matching function
 */
 
-#include <stddef.h>
+#include <stdlib.h>
 #include "my.h"
 #include "my_printf.h"
+
+static void free_arrays(arr_ptr_t *redir)
+{
+    if (redir->list_flag) {
+        free(redir->list_flag);
+        redir->list_flag = NULL;
+    } if (redir->list_mod) {
+        free(redir->list_mod);
+        redir->list_mod = NULL;
+    }
+}
 
 static int initialize_arrays(arr_ptr_t *redir)
 {
@@ -18,8 +29,10 @@ static int initialize_arrays(arr_ptr_t *redir)
     }
     if (!(redir->list_mod)) {
         initialize_modifiers(redir);
-        if (!(redir->list_mod))
+        if (!(redir->list_mod)) {
+            free_arrays(redir);
             return (0);
+        }
     }
     return (1);
 }
@@ -67,9 +80,13 @@ int get_flag(va_list ap, arr_ptr_t *redir, const char *shifted_input, int *idx)
     if (shifted_input[1] == '%') {
         flag_percent(shifted_input, idx);
         (*idx) += 1;
+        free_arrays(redir);
         return (0);
     }
-    if (!(few_cases(shifted_input, idx, call_redir)))
+    if (!(few_cases(shifted_input, idx, call_redir))) {
+        free_arrays(redir);
         return (0);
+    }
+    free_arrays(redir);
     return (-1);
 }
