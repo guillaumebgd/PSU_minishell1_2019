@@ -25,7 +25,7 @@ SRC	=	src/minishell.c									\
 		src/env_handlers/env_list_size.c				\
 		src/env_handlers/free_env_list.c
 
-MAIN	=	main.c
+MAIN	=	src/main.c
 
 VPATH	=	/usr/local/lib/
 
