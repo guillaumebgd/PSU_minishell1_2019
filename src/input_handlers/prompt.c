@@ -32,6 +32,11 @@ static char *get_curdir(void)
     if (!pwd)
         return (NULL);
     split_pwd = my_str_to_word_array(pwd, "/", 1);
+    if (my_arrlen(split_pwd) == 0) {
+        if (split_pwd)
+            my_free_arr(split_pwd);
+        return (NULL);
+    }
     current_directory = my_strdup(split_pwd[my_arrlen(split_pwd) - 1]);
     my_free_arr(split_pwd);
     return (current_directory);
