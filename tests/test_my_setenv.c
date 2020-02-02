@@ -55,7 +55,8 @@ Test(my_setenv, invalid_first_char)
     cr_redirect_stdout();
     create_env_list_from_array(&head, NULL);
     my_setenv(&head, (char *[]){"setenv", "/EST", "two", NULL});
-    cr_expect_stdout_eq_str("setenv: Variable name must begin with a letter.\n");
+    cr_expect_stdout_eq_str("setenv: Variable name"
+                            " must begin with a letter.\n");
     free_env_list(&head);
 }
 
