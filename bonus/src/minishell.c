@@ -9,13 +9,29 @@
 #include "my.h"
 #include "minishell.h"
 
+static bool_t check_empty_input(const char *input)
+{
+    int index = 0;
+
+    if (!input || !input[0])
+        return (FALSE);
+    while (input[index]) {
+        if (!find_char_in_str(" \t", input[index]))
+            return (FALSE);
+        index += 1;
+    }
+    return (TRUE);
+}
+
 static bool_t special_input(const char *input, envg_list_t **envg_list)
 {
+    bool_t empty_input = check_empty_input(input);
     int len_input = my_strlen(input);
+    int index = 0;
 
-    if (len_input <= 0) {
-        if (len_input == 0)
-            minishell(envg_list, FALSE);
+    if (len_input <= 0 || empty_input) {
+        if (len_input == 0 || empty_input)
+            minishell(envg_list);
         else
             my_putstr("exit\n");
         return (FALSE);
