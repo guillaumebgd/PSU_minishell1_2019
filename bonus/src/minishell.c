@@ -31,7 +31,7 @@ static bool_t special_input(const char *input, envg_list_t **envg_list)
 
     if (len_input <= 0 || empty_input) {
         if (len_input == 0 || empty_input)
-            minishell(envg_list);
+            minishell(envg_list, TRUE);
         else
             my_putstr("exit\n");
         return (FALSE);
