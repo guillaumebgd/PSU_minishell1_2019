@@ -13,6 +13,8 @@ The goal of the project is to have a small shell that can assure the followings:
 
 ![Minishell1 Normal Output](https://github.com/guillaumebgd/PSU_minishell1_2019/blob/master/.github_assets/PSU_minishell1_normal_output.png?raw=true)
 
+***
+
 ## Bonus
 
 ![Minishell1 Bonus](https://github.com/guillaumebgd/PSU_minishell1_2019/blob/master/.github_assets/PSU_minishell1_bonus.png?raw=true)
