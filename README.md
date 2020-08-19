@@ -3,6 +3,9 @@
 # PSU_minishell1_2019
 
 A first year Epitech project done during the 1st semester.<br>
+
+## Description
+
 The goal of the project is to have a small shell that can assure the followings:<br>
 
 * A prompt to enter commands.
